@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Realtime pixel tracking dashboard</title>
+  <style type="text/css">
+    .visit {
+      margin: 5px 0;
+      border-bottom: 1px dotted #CCC;
+      padding: 5px 0;
+    }
+    .ip {
+      margin: 0 10px;
+      border-left: 1px dotted #CCC;
+      border-right: 1px dotted #CCC;
+      padding: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Realtime pixel tracking dashboard</h1>
+
+  <div class="visits"></div>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.1/moment.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    $(function() {
+      var socket = io();
+      var containerEl = $('.visits');
+      socket.on('visit', function(visit) {
+        var newItem = '<div class="visit">';
+        newItem += '<span class="date">' + moment().format('MMMM Do YYYY, HH:mm:ss') + '</span>';
+        newItem += '<span class="ip">' + visit.ip + '</span>';
+        newItem += '<span class="ua">' + visit.ua + '</span></div>';
+        containerEl.append(newItem);
+      });
+    });
+  </script>
+</body>
+</html>
