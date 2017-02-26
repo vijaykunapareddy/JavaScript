@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app = "testApp">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"> </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+	<script	src="app.js"></script>
+	<style>
+		.directives{
+			border : 1px solid red;
+		}
+	</style>
+	<body>
+		<div class = "directives">
+			<element-directive></element-directive>
+			<div ng-init = "students=[ {name:'Prabhjot',country:'US'}, {name:'Nidhi',country:'Sweden'}, {name:'Kapil',country:'India'}]">
+			<p>
+				Name : <input type = "text" ng-model = "name">
+			</p>
+			<p>Hello <span ng-bind = "name"></span>....!</p>
+			<p>List of students with country name:</p>
+			<ol> <li ng-repeat = "student in students"> {{ 'Name: ' + student.name + ', Country: ' + student.country}} </li> </ol>
+			</div>
+		</div>
+		<div ng-controller = "formController">
+			Enter first name: 
+			<input type = "text" ng-model = "student.firstname">
+			<br><br>
+			Enter last name: 
+			<input type = "text" ng-model = "student.lastname">
+			<br><br>
+			Entered Value: {{student.fullname()}}
+        </div>
+		<br/><br/>
+		<div ng-controller = "formController1">
+			{{value|stringReverse}}
+			<button ng-click="countClicks()">Click Me!</button> 
+			{{count}}
+		</div>
+		<br><br>
+		<div ng-controller = "scopeCOntroller">
+			<br/>
+				<input type = "text" ng-model="name">{{name}}</span>
+			<br/>
+				 <span ng-bind="age"></span>
+			<br/>
+				{{place}}
+		</div>
+		<div ng-controller = "scopeCOntroller">
+			<br/>
+				<input type = "text" ng-model="name">{{name}}</span>
+			<br/>
+				 <span ng-bind="age"></span>
+			<br/>
+				{{place}}
+		</div>
+		<br/>
+		<div ng-controller="parent">
+			Controller Name: {{controllerName}}<br/>
+			Color: {{color}}<br/>
+			Type: {{type}}<br/> 
+			<hr>
+			<div ng-controller="child">
+      		Controller Name: {{controllerName}}<br/>
+          	Color: {{color}}<br/>
+            Type: {{type}}<br/> 
+    	</div>
+		<br/>
+		<hr/>
+		<h3>Validations</h3>
+		<div>
+			<form name = "myform">
+				<input type = "email" name = "email" ng-model = "email" required>
+				<span ng-show="myform.email.$touched && myform.email.$invalid">Invalid email.</span>
+				<p><strong>Input state (Email):</strong></p> <h1>{{myform.email.$valid}}</h1>
+			</form>
+		</div>
+		<div>
+			<form name="testForm"> <input name="testInput" ng-model="testInput" required custome-validation> </form>   
+			<p>The input's valid state is:</p> <h3>{{testForm.testInput.$valid}}</h3> 
+		</div>
+		<br/>
+		<hr>
+		<div ng-controller="SFP">  
+			<p>{{message}}</p> 
+		</div>
+		<hr>
+		<br/>
+		<p><a href = "#welcome">welcome</a></p> <p><a href = "#contact">contacts</a></p>
+		<div ng-view></div>
+        <script type = "text/ng-template" id = "welcome.html">
+           <h2>Welcome </h2>
+           {{message}}
+        </script>
+        <script type = "text/ng-template" id = "contact.html">
+           <h2> Contacts </h2>
+           {{message}}
+        </script>
+    </div>
+	<hr>
+	<div ng-controller="httpCall">
+		<button ng-click="getData()">Ajax Call!</button> 
+		<li ng-repeat="site in sites">
+            {{site.siteName}}: {{site.domainName}}
+        </li>
+	</div>
+	</body>
+</html>

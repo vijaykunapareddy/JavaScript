@@ -1,0 +1,20 @@
+{
+  "sites":
+  [
+    {
+      "siteName": "SitePoint",
+      "domainName": "https://www.sitepoint.com",
+      "description": "SitePoint is a hub for web developers to share their passion for building incredible Internet things."
+    },
+    {
+      "siteName": "A List Apart",
+      "domainName": "http://alistapart.com/",
+      "description": "A List Apart explores the design, development, and meaning of web content, with a special focus on web standards and best practices."
+    },
+    {
+      "siteName": "Smashing Magazine",
+      "domainName": "https://www.smashingmagazine.com/",
+      "description": "Smashing Magazine delivers useful and innovative information to Web designers and developers."
+    }
+  ]
+}
